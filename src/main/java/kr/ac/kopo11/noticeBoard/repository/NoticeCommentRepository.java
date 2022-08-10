@@ -1,4 +1,4 @@
-package kr.ac.kopo11.noticeBoard.repository;
+    package kr.ac.kopo11.noticeBoard.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;

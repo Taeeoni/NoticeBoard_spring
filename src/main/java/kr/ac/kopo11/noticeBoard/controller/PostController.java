@@ -85,12 +85,12 @@ public class PostController {
 	@RequestMapping(value = "/home/save/re")
 	public String reNoticeListSave(NoticeList noticeList) { // 답글 저장 
 		
-		String re = ">[RE]";
-		for(int i = 0; i < noticeList.getRelevel(); i++) {
-			re = "-" + re;
-		}
-		
-		noticeList.setTitle(re + noticeList.getTitle());
+//		String re = ">[RE]";
+//		for(int i = 0; i < noticeList.getRelevel(); i++) {
+//			re = "-" + re;
+//		}
+//		
+//		noticeList.setTitle(re + noticeList.getTitle());
 		
 		
 		
@@ -176,7 +176,6 @@ public class PostController {
 						noticeListService.save(m);
 						
 					});
-			
 
 		});
 

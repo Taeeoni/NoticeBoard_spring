@@ -12,7 +12,6 @@ import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.view.RedirectView;
@@ -26,7 +25,7 @@ import kr.ac.kopo11.noticeBoard.service.NoticeListService;
 public class NoticeListController {
 
 	@Autowired
-	NoticeListService noticeListService;
+	private NoticeListService noticeListService;
 
 	@RequestMapping(value = "/home")
 	public String NoticeListAll(Model model,
@@ -73,7 +72,7 @@ public class NoticeListController {
 
 
 	@RequestMapping(value = "/home/save")
-	public String NoticeListSave(Model model, @ModelAttribute("noticeList") NoticeList noticeList) {
+	public String NoticeListSave(Model model, @ModelAttribute NoticeList noticeList) {
 		
 		
 		noticeListService.save(noticeList);
@@ -92,8 +91,6 @@ public class NoticeListController {
 		}
 		
 		noticeList.setTitle(re + noticeList.getTitle());
-		
-		
 		
 		noticeListService.findByRootid(noticeList.getRootid()).stream()
 		.filter(list -> list.getRecnt() >= noticeList.getRecnt())
@@ -171,7 +168,7 @@ public class NoticeListController {
 	}
 
 	@RequestMapping(value = "/home/addComment")
-	public RedirectView AddComment(Model model, @ModelAttribute("noticeList") NoticeList noticeList,
+	public String AddComment(Model model, @ModelAttribute("noticeList") NoticeList noticeList,
 			@ModelAttribute("noticeComment") NoticeComment noticeComment) {
 
 		noticeListService.findById(noticeList.getId()).ifPresent(m -> {
@@ -182,11 +179,11 @@ public class NoticeListController {
 
 		RedirectView redirectView = new RedirectView();
 		redirectView.setUrl("http://localhost:8889/home/noticeOne?id=" + noticeList.getId());
-		return redirectView;
+		return "redirect:/home/noticeOne?id=" + noticeList.getId();
 	}
 
 	@RequestMapping(value = "/home/deleteComment")
-	public String DeleteComment(NoticeList noticeList, NoticeComment noticeComment) {
+	public String DeleteComment(@ModelAttribute NoticeList noticeList, @ModelAttribute NoticeComment noticeComment) {
 
 		noticeListService.findById(noticeList.getId()).ifPresent(m -> {
 

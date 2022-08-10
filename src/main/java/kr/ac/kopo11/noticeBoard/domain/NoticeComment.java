@@ -2,6 +2,7 @@ package kr.ac.kopo11.noticeBoard.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,7 +27,7 @@ public class NoticeComment {
 	private String comment;
 	
 	@JsonBackReference
-	@ManyToOne(optional=false)
+	@ManyToOne(optional=false, fetch=FetchType.LAZY)
 	@JoinColumn(name="noticeListId")
 	private NoticeList noticeList;
 	

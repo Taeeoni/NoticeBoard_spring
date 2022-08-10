@@ -7,6 +7,8 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <style>
 input[name="title"] {

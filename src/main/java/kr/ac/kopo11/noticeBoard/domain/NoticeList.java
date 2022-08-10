@@ -28,7 +28,6 @@ public class NoticeList {
 	@Column
 	private String title;
 	
-
 	@Column
 	private Date date;
 	
